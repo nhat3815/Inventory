@@ -30,6 +30,7 @@ export class ListDotNhan extends Component {
                 
     //  }
 
+
     render() {
            console.log('Item Đợt nhận: ', this.props.ItemDotNhan)
         return (
@@ -37,7 +38,14 @@ export class ListDotNhan extends Component {
                 <Text> Danh sách đợt nhận </Text>
                 <FlatList 
                     data= {this.props.ItemDotNhan}
-                    renderItem = {({item}) => <ItemDotNhan ItemDotNhan = {item}/>}
+                    renderItem = {({item}) => 
+                        <View>
+                            <ItemDotNhan ItemDotNhan = {item}
+                            create = {false}
+                            navigation = {this.props.navigation}
+                            />
+                        </View>
+                    }
                     keyExtractor={(item)=>item.DotNhan}
                 />
             </View>

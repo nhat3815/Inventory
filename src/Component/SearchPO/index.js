@@ -13,7 +13,8 @@ export class SearchPO extends Component {
     ButtonClick(poid){
         console.log('Navigation: ' + 'DotNhanPONav');
         console.log('ID...: ', poid)
-        this.props.navigation.navigate('DotNhanPONav',{poid: poid});
+        this.props.navigation.navigate('DotNhanPONav',{poids: poid});
+        // this.props.DnAction.getItemDNToPO(poid);
       }
 
     render() {

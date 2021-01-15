@@ -5,7 +5,8 @@ import { View, Text } from "react-native";
 import  PageListPO  from "./PageListPO.js";
 import * as PoAction from '../NhapPO/StateDataPO';
 import {bindActionCreators} from 'redux'
-import {HeaderPO} from './HeaderPO.js'
+import HeaderPO from './HeaderPO.js'
+import * as DnAction from "../DotNhanPO/StateDotNhan.js";
 
 import { log } from 'react-native-reanimated';
 
@@ -13,14 +14,16 @@ export class NhapPO extends Component {
 
 
   componentDidMount(){
-    this.props.PoAction.get_success()
+    const dnid = this.props.route.params.dnid
+    console.log('Get parram navigation: ', dnid)
+    this.props.PoAction.get_success(dnid)
   }
 
 
     render() {
         return (
           <View>
-            <HeaderPO />
+            <HeaderPO id = {this.props.route.params.dnid} navigation = {this.props.navigation}/>
 
             <PageListPO/>
             </View>  
@@ -36,7 +39,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      PoAction: bindActionCreators(PoAction, dispatch)
+      PoAction: bindActionCreators(PoAction, dispatch),
+      DnAction:bindActionCreators(DnAction, dispatch)
     };
 }
 

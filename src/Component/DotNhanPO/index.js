@@ -9,18 +9,22 @@ import PageDotNhan from "./PageDotNhan.js";
 export class DotNhanPO extends Component {
 
     componentDidMount(){
-        const { navigation } = this.props;
-        const poid = navigation.getParam('poid','poid')
-        console.log('Aloooooo: ', poid)
         // console.log('para', this.props.navigation.getParam(poid, ''))
-        this.props.DnAction.getItemDNToPO()
+        const poid = this.props.route.params.poids
+        console.log('Get parram navigation: ', poid)
+        this.props.DnAction.getItemDNToPO(poid)
+    }
+
+    componentWillUnmount(){
+        this.props.DnAction.get_success();
     }
 
     render() {
+        
         return (
             <View>
                 <Text> Đợt nhận </Text>
-                <PageDotNhan/>
+                <PageDotNhan navigation = {this.props.navigation}/>
             </View>
         )
     }

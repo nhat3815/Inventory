@@ -2,28 +2,29 @@ import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
 
+
+import * as DnAction from "../DotNhanPO/StateDotNhan.js";
 import * as PoAction from '../NhapPO/StateDataPO';
 import {bindActionCreators} from 'redux'
 
-
-export class HeaderPO extends Component {
+ class HeaderPO extends Component {
    
     constructor(props){
         super(props);
+        this.apply = this.apply.bind(this)
     }
 
-    apply(){
-        console.log('this.props.PoAction: ',this.props.PoAction)
-        // this.props.PoAction.Apply_success()
+    apply = (id) => {
+        console.log('this.props.DnAction: ', id)
+        this.props.DnActions.Apply_success(id,3);
+        this.props.navigation.goBack();
     }
 
     render() {
-        const {ItemPO} = this.props;
-        console.log("Header Nhận: ",ItemPO)
         return (
             <View>
                 <Text>Phần header</Text>
-                <TouchableOpacity onPress={()=>this.apply()}>
+                <TouchableOpacity onPress={()=>{this.apply(this.props.id)}}>
                     <Text>Xác nhận</Text>
                 </TouchableOpacity>
             </View>
@@ -46,11 +47,11 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      PoAction: bindActionCreators(PoAction, dispatch)
+      DnActions:bindActionCreators(DnAction, dispatch)
     };
 }
 
 
 
 
-export default connect(null, mapDispatchToProps)(HeaderPO)
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderPO)

@@ -23,6 +23,11 @@ const reducerDotNhan = (state = ItemDotNhan, action) => {
                 ...state,
                 item: action.data,
             }
+        case 'Apply':
+            return {
+                ...state,
+                item:action.data
+            }
         default:
             console.log(action.type)
             return state

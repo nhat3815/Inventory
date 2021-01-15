@@ -1,0 +1,8 @@
+const ItemDotNhan = {
+    item: [
+        {
+            poid: '',
+            
+        }
+    ]
+}

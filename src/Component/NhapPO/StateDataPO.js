@@ -1,7 +1,9 @@
+import { ItemDotNhan } from "../DotNhanPO/ItemDotNhan";
+
 let ItemPO = [
     {
         POID: '12345PO0120120215555',
-        DotNhan:'DN001',
+        DotNhan:'12345DN14012024',
         id:1,
         Name:'Nước lama',
         dvt: 'Lon',
@@ -12,7 +14,7 @@ let ItemPO = [
     },
     {
         POID: '12345PO0120120215555',
-        DotNhan:'DN001',
+        DotNhan:'12345DN14012025',
         id:2,
         Name:'Nước lama 2',
         dvt: 'Lon',
@@ -25,9 +27,18 @@ let ItemPO = [
 ];
 
 
-export const get_success = () => {
+export const get_success = (id) => {
     return(dispatch,getState) =>{
-      dispatch(get_item(ItemPO))
+      let listTam = []
+      ItemPO.map((e)=> {
+        if(id !== e.DotNhan) return e
+        else
+        console.log('Test ID: ', id,'====', e.DotNhan)
+          listTam.push(e)
+          return listTam
+      })
+      dispatch(get_item(listTam))
+      return(ItemPO = listTam)
     }
   }
 
